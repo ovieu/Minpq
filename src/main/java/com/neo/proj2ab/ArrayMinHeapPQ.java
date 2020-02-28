@@ -1,6 +1,11 @@
 package com.neo.proj2ab;
 
-public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
     private Node[] arr;
     private int next;
 
@@ -14,12 +19,14 @@ public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
         return arr.length;
     }
 
-    // end -> private helpers
-
     @Override
     public void add(T item, double priority) {
-
+        if (item == null) throw new IllegalArgumentException("Item cannot be null");
+        arr[next] = new Node(item, priority);
+        //swimUp(next);
+        next++;
     }
+    // end -> private helpers
 
     @Override
     public boolean contains(T item) {
@@ -84,5 +91,17 @@ public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
            if (other == null) return -1;
            return Double.compare(this.getPriority(), other.getPriority());
         }
+    }
+
+    // private test methods
+    @Test
+    public void testAdd() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.add(1, 0);
+        double actualPriority = pq.arr[1].getPriority();
+        Integer actualValue = (Integer) pq.arr[1].getValue();
+        Integer expectedValue = 1;
+        assertEquals(actualValue.intValue(), expectedValue.intValue());
+        assertEquals(Double.valueOf(actualPriority), Double.valueOf(0));
     }
 }
