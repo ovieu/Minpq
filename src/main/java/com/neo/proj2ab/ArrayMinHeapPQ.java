@@ -31,7 +31,7 @@ public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
 
     }
 
-    private class Node {
+    private class Node implements Comparable<Node>{
         T value;
         double priority;
 
@@ -62,6 +62,12 @@ public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
                     "value=" + value +
                     ", priority=" + priority +
                     '}';
+        }
+
+        @Override
+        public int compareTo(Node other) {
+           if (other == null) return -1;
+           return Double.compare(this.getPriority(), other.getPriority());
         }
     }
 }
