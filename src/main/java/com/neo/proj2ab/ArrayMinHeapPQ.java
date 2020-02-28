@@ -1,6 +1,21 @@
 package com.neo.proj2ab;
 
 public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
+    private Node[] arr;
+    private int next;
+
+    public ArrayMinHeapPQ() {
+        arr = new ArrayMinHeapPQ.Node[5];
+        next = 1;   // the heap should start at index 1 for easy calculations
+    }
+
+    // start -> private helpers
+    int arrLen() {
+        return arr.length;
+    }
+
+    // end -> private helpers
+
     @Override
     public void add(T item, double priority) {
 
