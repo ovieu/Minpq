@@ -1,4 +1,33 @@
 package com.neo.proj2ab;
 
-public class ArrayMinHeapPQ {
+public class ArrayMinHeapPQ<T> implements ExtrinsicMinPQ<T> {
+    @Override
+    public void add(T item, double priority) {
+
+    }
+
+    @Override
+    public boolean contains(T item) {
+        return false;
+    }
+
+    @Override
+    public T getSmallest() {
+        return null;
+    }
+
+    @Override
+    public T removeSmallest() {
+        return null;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public void changePriority(T item, double priority) {
+
+    }
 }
