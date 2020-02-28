@@ -26,4 +26,23 @@ public class ArrayHeapMinPQTest {
         int expected = 6;
         assertEquals(actual, expected);
     }
+
+    @Test
+    public void containsElementTest() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.add(1, 3);
+        pq.add(3, 7);
+        pq.add(9, 0);
+        pq.add(2, -1);
+
+        // items exist
+        assertTrue(pq.contains(1));
+        assertTrue(pq.contains(2));
+        assertTrue(pq.contains(9));
+        assertTrue(pq.contains(3));
+
+        // items dont exist
+        assertFalse(pq.contains(21));
+        assertFalse(pq.contains(31));
+    }
 }
