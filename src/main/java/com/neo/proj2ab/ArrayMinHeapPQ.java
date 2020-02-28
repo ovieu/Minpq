@@ -19,11 +19,25 @@ public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
         return arr.length;
     }
 
+    boolean lesser(int child, int parent) {
+        ArrayMinHeapPQ.Node childNode = arr[child];
+        ArrayMinHeapPQ.Node parenNode = arr[parent];
+        return childNode.compareTo(parenNode) < 0;
+    }
+
+    // k is the index of the element added to the end of the pq
+    private void swimUp(int k) {
+        while (k > 1 && lesser(k, k / 2)) {
+//           exchange(k, k / 2);
+           k = k / 2;
+        }
+    }
+
     @Override
     public void add(T item, double priority) {
         if (item == null) throw new IllegalArgumentException("Item cannot be null");
         arr[next] = new Node(item, priority);
-        //swimUp(next);
+        swimUp(next);
         next++;
     }
     // end -> private helpers
@@ -103,5 +117,15 @@ public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
         Integer expectedValue = 1;
         assertEquals(actualValue.intValue(), expectedValue.intValue());
         assertEquals(Double.valueOf(actualPriority), Double.valueOf(0));
+    }
+
+    @Test
+    public void lesserTest() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.add(1, 3);
+        pq.add(1, 1);
+        int comp = pq.arr[2].compareTo(pq.arr[1]);
+        boolean comp2 = pq.lesser(2, 1);
+        assertTrue(comp2);
     }
 }
