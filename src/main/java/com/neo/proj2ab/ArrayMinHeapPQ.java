@@ -2,6 +2,8 @@ package com.neo.proj2ab;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -53,9 +55,16 @@ public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
         return false;
     }
 
+    public boolean isEmpty() {
+        return next == 1;
+    }
+
     @Override
     public T getSmallest() {
-        return null;
+        if (isEmpty()) {
+            throw new NoSuchElementException("Pq is empty");
+        }
+        return arr[1].getValue();
     }
 
     @Override

@@ -16,4 +16,14 @@ public class ArrayHeapMinPQTest {
         int expected = 5;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getSmallestItemTest() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.add(1, 3);
+        pq.add(6, 1);
+        int actual = pq.getSmallest();
+        int expected = 6;
+        assertEquals(actual, expected);
+    }
 }
