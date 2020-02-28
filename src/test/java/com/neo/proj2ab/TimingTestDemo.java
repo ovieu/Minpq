@@ -1,3 +1,5 @@
+package com.neo.proj2ab;
+
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**

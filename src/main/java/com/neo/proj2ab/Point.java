@@ -1,3 +1,5 @@
+package com.neo.proj2ab;
+
 public class Point {
 
     private double x;
@@ -53,6 +55,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return String.format("Point x: %.10f, y: %.10f", x, y);
+        return String.format("com.neo.proj2ab.Point x: %.10f, y: %.10f", x, y);
     }
 }
