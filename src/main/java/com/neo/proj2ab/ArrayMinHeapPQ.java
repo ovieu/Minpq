@@ -2,18 +2,23 @@ package com.neo.proj2ab;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
+public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements ExtrinsicMinPQ<T> {
     private Node[] arr;
     private int next;
+    private List<T> elements;
 
     public ArrayMinHeapPQ() {
         arr = new ArrayMinHeapPQ.Node[5];
         next = 1;   // the heap should start at index 1 for easy calculations
+        elements = new ArrayList<>();
     }
 
     // start -> private helpers
@@ -46,13 +51,15 @@ public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
         if (item == null) throw new IllegalArgumentException("Item cannot be null");
         arr[next] = new Node(item, priority);
         swimUp(next);
+        elements.add(item);
         next++;
     }
-    // end -> private helpers
 
+    // end -> private helpers
     @Override
     public boolean contains(T item) {
-        return false;
+        Collections.sort(elements);
+        return Collections.binarySearch(elements, item) >= 0;
     }
 
     public boolean isEmpty() {
@@ -74,7 +81,7 @@ public class ArrayMinHeapPQ<T extends Comparable> implements ExtrinsicMinPQ<T> {
 
     @Override
     public int size() {
-        return 0;
+        return next - 1;
     }
 
     @Override

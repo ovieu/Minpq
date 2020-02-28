@@ -45,4 +45,17 @@ public class ArrayHeapMinPQTest {
         assertFalse(pq.contains(21));
         assertFalse(pq.contains(31));
     }
+
+    @Test
+    public void testSize() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        assertTrue(pq.size() == 0);
+
+        pq.add(1, 3);
+        pq.add(3, 7);
+        pq.add(9, 0);
+        int actual = pq.size();
+        int expected = 3;
+        assertEquals(actual, expected);
+    }
 }
