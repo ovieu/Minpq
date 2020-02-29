@@ -76,6 +76,7 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
 
     @Override
     public T removeSmallest() {
+        if (isEmpty()) throw new NoSuchElementException("pq is empty");
         return null;
     }
 

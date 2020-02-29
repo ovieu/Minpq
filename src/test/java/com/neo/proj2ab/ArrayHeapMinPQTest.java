@@ -1,6 +1,9 @@
 package com.neo.proj2ab;
 
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 public class ArrayHeapMinPQTest {
@@ -57,5 +60,12 @@ public class ArrayHeapMinPQTest {
         int actual = pq.size();
         int expected = 3;
         assertEquals(actual, expected);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testRemoveSmallestInEmpty() {
+        // test it throws exception on empyt
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.removeSmallest();
     }
 }
