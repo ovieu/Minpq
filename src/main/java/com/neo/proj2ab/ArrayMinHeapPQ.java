@@ -74,10 +74,11 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         return arr[1].getValue();
     }
 
+    // if the current element at the smallest position is greater than its
+    // children, keep pushing it down until it is lesser than both children
     @Override
     public T removeSmallest() {
-        if (isEmpty()) throw new NoSuchElementException("pq is empty");
-        return null;
+
     }
 
     @Override
@@ -161,4 +162,22 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         double actual = Double.valueOf(1);
         assertTrue(exp1 == actual);
     }
+
+    @Test
+    public void testSwimdown() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ();
+        pq.add(23, 10);
+        pq.add(-87, 2);
+        pq.add(24, 0);
+        // test if the element would move
+        int actual = pq.arr[3].getValue();
+        int expected = -87;
+        assertEquals(expected, actual);
+
+        pq.removeSmallest();
+        actual = pq.arr[2].getValue();
+        expected = 23;
+        assertEquals(actual, expected);
+    }
+
 }
