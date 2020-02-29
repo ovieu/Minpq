@@ -70,22 +70,23 @@ public class ArrayHeapMinPQTest {
     }
 
     @Test
-    public void testGetSmallestItem() {
+    public void removeSmallestItem() {
         ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ();
-        // add one element
-        pq.add(23, 0);
-        int expected = 23;
-        int actual = pq.removeSmallest();
-        assertEquals(expected, actual);
-        pq.removeSmallest();
-        assertTrue(pq.isEmpty());
+        pq.add(43, 3);
+        pq.add(74, 4);
+        pq.add(90, 0);
+        pq.add(60, 1);
 
-        // add more than two element
-        pq.add(43, 5);
-        pq.add(74, 0);
-        pq.add(90, -1);
-        expected = 90;
+        int actual = pq.removeSmallest();
+        assertEquals(90, actual);
+
         actual = pq.removeSmallest();
-        assertEquals(expected, actual);
+        assertEquals(60, actual);
+
+        actual = pq.removeSmallest();
+        assertEquals(43, actual);
+
+        actual = pq.removeSmallest();
+        assertEquals(74, actual);
     }
 }
