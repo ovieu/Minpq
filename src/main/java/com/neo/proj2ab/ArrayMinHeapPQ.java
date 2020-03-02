@@ -16,7 +16,7 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
     private List<T> elements;
 
     public ArrayMinHeapPQ() {
-        arr = new ArrayMinHeapPQ.Node[5];
+        arr = new ArrayMinHeapPQ.Node[8];
         next = 1;   // the heap should start at index 1 for easy calculations
         elements = new ArrayList<>();
     }
@@ -74,11 +74,31 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         return arr[1].getValue();
     }
 
+    public boolean greater(int i, int j) {
+        if (arr[j] == null) return false;
+        return arr[i].compareTo(arr[j]) > 0;
+    }
+
+    public void swimDown(int k) {
+        while (2*k <= next) {
+            int j = 2*k;
+            if (j < next && greater(j, j+1)) j++;
+            if (!greater(k, j)) break;
+            exchange(k, j);
+            k = j;
+        }
+    }
+
     // if the current element at the smallest position is greater than its
     // children, keep pushing it down until it is lesser than both children
     @Override
     public T removeSmallest() {
-
+        if (isEmpty()) throw new NoSuchElementException("pq is empty");
+        T min = getSmallest();
+        exchange(1, --next);
+        arr[next] = null;
+        swimDown(1);
+        return min;
     }
 
     @Override
@@ -150,7 +170,7 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         pq.add(1, 1);
         int comp = pq.arr[2].compareTo(pq.arr[1]);
         boolean comp2 = pq.lesser(2, 1);
-        assertTrue(comp2);
+        assertTrue(!comp2);
     }
 
     @Test

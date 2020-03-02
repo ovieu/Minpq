@@ -16,7 +16,7 @@ public class ArrayHeapMinPQTest {
     public void constructorTest() {
         ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
         int actual = pq.arrLen();
-        int expected = 5;
+        int expected = 8;
         assertEquals(expected, actual);
     }
 
@@ -88,5 +88,8 @@ public class ArrayHeapMinPQTest {
 
         actual = pq.removeSmallest();
         assertEquals(74, actual);
+
+        boolean isEmpty = pq.isEmpty();
+        assertTrue(isEmpty);
     }
 }
