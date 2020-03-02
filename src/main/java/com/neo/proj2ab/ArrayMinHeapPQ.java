@@ -98,6 +98,7 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         exchange(1, --next);
         arr[next] = null;
         swimDown(1);
+        elements.remove(min);
         return min;
     }
 
@@ -202,5 +203,4 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         expected = 23;
         assertEquals(actual, expected);
     }
-
 }
