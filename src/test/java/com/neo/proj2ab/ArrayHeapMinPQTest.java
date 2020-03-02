@@ -92,4 +92,12 @@ public class ArrayHeapMinPQTest {
         boolean isEmpty = pq.isEmpty();
         assertTrue(isEmpty);
     }
+
+    @Test(expected = NoSuchElementException.class)
+    public void changePriortyAbsentValueTest() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ<>();
+        pq.add(43, 3);
+        pq.add(74, 4);
+        pq.changePriority(84, 2);
+    }
 }

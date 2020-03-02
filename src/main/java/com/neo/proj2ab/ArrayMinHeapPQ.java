@@ -108,7 +108,10 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
 
     @Override
     public void changePriority(T item, double priority) {
+        if (item == null) throw new IllegalArgumentException("Cannot change null item");
+        if (Double.isNaN(priority)) throw new IllegalArgumentException("Must be a number");
 
+        if (!contains(item)) throw new NoSuchElementException("Does not contain the element");
     }
 
     private class Node implements Comparable<Node>{
