@@ -1,8 +1,10 @@
+package com.neo.proj2ab;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
-/** A very basic implementation of the ExtrinsicMinPQ.
+/** A very basic implementation of the com.neo.proj2ab.ExtrinsicMinPQ.
  *  Operations have very poor performance, but it's at least
  *  correct, with one exception: The add method
  *  should throw an exception if the item already exists,

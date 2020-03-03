@@ -1,3 +1,5 @@
+package com.neo.proj2ab;
+
 /**
  * Priority queue where objects have a priority that is provided
  * extrinsically, i.e. are are supplied as an argument during insertion
