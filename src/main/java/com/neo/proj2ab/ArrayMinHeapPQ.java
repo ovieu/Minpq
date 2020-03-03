@@ -113,6 +113,16 @@ public class ArrayMinHeapPQ<T extends Comparable<? super T>> implements Extrinsi
         if (Double.isNaN(priority)) throw new IllegalArgumentException("Must be a number");
 
         if (!contains(item)) throw new NoSuchElementException("Does not contain the element");
+
+        for (int i = 1; i < next; i++) {
+            T val = arr[i].getValue();
+            if (val == item) {
+                arr[i].setPriority(priority);
+                swimUp(i);
+                swimDown(i);
+                return;
+            }
+        }
     }
 
     private class Node implements Comparable<Node>{

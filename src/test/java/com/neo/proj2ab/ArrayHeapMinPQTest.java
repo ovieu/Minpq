@@ -100,4 +100,22 @@ public class ArrayHeapMinPQTest {
         pq.add(74, 4);
         pq.changePriority(84, 2);
     }
+
+    @Test
+    public void changePriorityTest() {
+        ArrayMinHeapPQ<Integer> pq = new ArrayMinHeapPQ();
+        pq.add(90, 0);
+        pq.add(60, 1);
+        pq.add(38, 2);
+
+        pq.changePriority(38, -1);
+        int actual = pq.getSmallest();
+        int expected = 38;
+        assertEquals(actual, expected);
+
+        pq.changePriority(60, -12);
+        actual = pq.getSmallest();
+        expected = 60;
+        assertEquals(actual, expected);
+    }
 }
